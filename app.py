@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, flash, send_from_directory
 import qrcode
 import os
 from datetime import datetime, timedelta
@@ -53,6 +53,9 @@ def about():
 def contact():
     return render_template("contact.html")
 
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml")
 
 os.makedirs('static', exist_ok=True)
 
