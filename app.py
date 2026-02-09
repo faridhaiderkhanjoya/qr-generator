@@ -21,7 +21,7 @@ def delete_old_qr_images():
         filepath = os.path.join(folder, filename)
         if os.path.isfile(filepath):
             file_time = datetime.fromtimestamp(os.path.getmtime(filepath))
-            if now - file_time > timedelta(seconds=1):
+            if now - file_time > timedelta(seconds=5):
                 os.remove(filepath)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -54,6 +54,5 @@ def contact():
     return render_template("contact.html")
 
 
-if __name__ == '__main__':
-    os.makedirs('static', exist_ok=True)
-    app.run(debug=True)
+os.makedirs('static', exist_ok=True)
+
